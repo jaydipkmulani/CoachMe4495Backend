@@ -1,0 +1,6 @@
+npm i nodemon 
+npm i node
+npm i  mongoose 
+npm i express 
+npm i bcrypt 
+ npm i jsonwebtoken cookie-parser  "to add extra security for the access control"
