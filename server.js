@@ -13,7 +13,7 @@ import appointmentRoute from "./routes/appointment.route.js";
 import cookieParser from "cookie-parser";
 const app = express();
 
-app.use(cors({ origin: "http://localhost:8080", credentials: true }));
+app.use(cors({ origin: "https://coachmefinal.netlify.app/", credentials: true }));
 
 
 app.use(express.json());
@@ -31,7 +31,7 @@ const connect = async () => {
     await mongoose.connect(process.env.MONGO);
     console.log("connected to dataBase");
   } catch (error) {
-    handleError(error);
+    console.log(error)
 
   }
 }
@@ -55,9 +55,9 @@ app.use((err, req, res, next) => {
 
   return res.status(errorStatus).send(errorMessage);
 });
-const PORT=process.env.PORT || 8800;
+const PORT = process.env.PORT || 8800;
 // Start the server and connect to the database
 app.listen(PORT, () => {
   connect()
-  
+
 }); 
