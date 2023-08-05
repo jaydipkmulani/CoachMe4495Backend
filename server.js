@@ -13,7 +13,7 @@ import appointmentRoute from "./routes/appointment.route.js";
 import cookieParser from "cookie-parser";
 const app = express();
 
-app.use(cors({ origin: "https://coachmefinal.netlify.app/", credentials: true }));
+app.use(cors({ origin: "https://coachmefinal.netlify.app", credentials: true }));
 
 
 app.use(express.json());
