@@ -55,8 +55,9 @@ app.use((err, req, res, next) => {
 
   return res.status(errorStatus).send(errorMessage);
 });
+const PORT=process.env.PORT || 8800;
 // Start the server and connect to the database
-app.listen(8800, () => {
+app.listen(PORT, () => {
   connect()
-  console.log('Server is running on http://localhost:8800');
+  
 }); 
