@@ -11,7 +11,11 @@ import conversationRoute from "./routes/conversation.route.js";
 import authRoute from "./routes/auth.route.js";
 import appointmentRoute from "./routes/appointment.route.js";
 import cookieParser from "cookie-parser";
-import path from "path"; // Import the 'path' module
+import { fileURLToPath } from "url"; // Import the 'fileURLToPath' function
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url); // Get the filename
+const __dirname = path.dirname(__filename); // Get the directory name
 
 const app = express();
 
