@@ -11,33 +11,34 @@ import conversationRoute from "./routes/conversation.route.js";
 import authRoute from "./routes/auth.route.js";
 import appointmentRoute from "./routes/appointment.route.js";
 import cookieParser from "cookie-parser";
-import { fileURLToPath } from "url"; // Import the 'fileURLToPath' function
-import path from "path";
-
-const __filename = fileURLToPath(import.meta.url); // Get the filename
-const __dirname = path.dirname(__filename); // Get the directory name
-
 const app = express();
 
 app.use(cors({ origin: "https://coachmefrontend.onrender.com", credentials: true }));
 
+
 app.use(express.json());
 app.use(cookieParser());
 
+
 dotenv.config();
 
-mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', true)
 
+
+// Function to connect to the MongoDB database
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);
     console.log("connected to dataBase");
   } catch (error) {
-    console.log(error);
+    console.log(error)
+
   }
 }
 
+// Function to connect to the MongoDB database
 app.use('/api/auth', authRoute)
+// Endpoints for various routes
 app.use("/api/users", userRoute);
 app.use("/api/courses", courseRoute);
 app.use("/api/orders", orderRoute);
@@ -46,26 +47,17 @@ app.use("/api/messages", messageRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/appointments", appointmentRoute);
 
-// Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  // Set the static folder
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-  // Catch-all route for client-side routing
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-  });
-}
-
+// Error handling middleware
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";
 
   return res.status(errorStatus).send(errorMessage);
 });
-
 const PORT = process.env.PORT || 8800;
-
+// Start the server and connect to the database
 app.listen(PORT, () => {
-  connect();
-});
+  connect()
+
+});  
