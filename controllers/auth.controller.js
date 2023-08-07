@@ -35,11 +35,11 @@ export const login = async (req, res, next) => {
         }, process.env.JWT_KEY)
 
         const { password, ...info } = user._doc
-
-        res.cookie("accessToken", token, {
-            httpOnly: true, 
-        }).status(200).send(info)
-
+res.cookie("accessToken", token, {
+  httpOnly: true,
+  secure: true, // Set this for secure connections (HTTPS)
+  sameSite: "none", // Set this for cross-site cookies
+});
     } catch (err) {
         next(err);
     }
