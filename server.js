@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename); // Get the directory name
 
 const app = express();
 
-app.use(cors({ origin: "https://coachme.onrender.com", credentials: true }));
+app.use(cors({ origin: "https://coachmefrontend.onrender.com", credentials: true }));
 
 app.use(express.json());
 app.use(cookieParser());
